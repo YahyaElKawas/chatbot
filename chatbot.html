@@ -161,12 +161,16 @@
         //const [chatMessages, setChatMessages] = array;
         //const chatMessages = array[0]; // In react we shouldn't update the data instantly we should copy it first and then update it
         //const setChatMessages = array[1]; // Updater function
-        React.useRef() {
-
-        }
-        React.useEffect(() => {});
+        const chatMessagesRef = React.useRef(null); //In react we shouldn't use dom to access html elements
+        // To access html elements stored in react ref we have to go to useEffect
+        React.useEffect(() => {
+          const containerElement = chatMessagesRef.current;
+          if (containerElement) {
+            containerElement.scrollTop = containerElement.scrollHeight;
+          }
+        }, [chatMessages]); // The thing that will change
         return (
-          <div className="chat-messages-container">
+          <div className="chat-messages-container" ref={chatMessagesRef}>
             {chatMessages.map((chatMessage) => {
               return (
                 <ChatMessage
