@@ -168,7 +168,7 @@
           if (containerElement) {
             containerElement.scrollTop = containerElement.scrollHeight;
           }
-        }, [chatMessages]); // The thing that will change
+        }, [chatMessages]); // Dependency array: The thing that will change
         return (
           <div className="chat-messages-container" ref={chatMessagesRef}>
             {chatMessages.map((chatMessage) => {
